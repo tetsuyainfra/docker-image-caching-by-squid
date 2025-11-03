@@ -43,15 +43,15 @@ export $(cat .env | xargs) && ./test.sh
 ```
 
 ## Squid envrionment
-| VAR                 | default                           | memo                                                                   |
-| ------------------- | --------------------------------- | ---------------------------------------------------------------------- |
-| SQUID_IMAGE         | tetsuyainfra/compose-squid:latest | docker image name with tag                                             |
-| TZ                  | UTC                               | TIME_ZONE                                                              |
-| RESTART             | no                                | https://github.com/compose-spec/compose-spec/blob/main/spec.md#restart |
-| CACHE_DIR           | ufs /var/cache/squid 1000 16 256  | https://www.squid-cache.org/Doc/config/cache_dir/                      |
-| MAXIMUM_OBJECT_SIZE | 256 MB                            | https://www.squid-cache.org/Doc/config/maximum_object_size/            |
-| CACHE_MEM           | 256 MB                            | https://www.squid-cache.org/Doc/config/cache_mem/                      |
-| MAX_FILEDESCRIPTORS | 1024                              | https://www.squid-cache.org/Doc/config/max_filedescriptors/            |
+| VAR                 | default                              | memo                                                                   |
+| ------------------- | ------------------------------------ | ---------------------------------------------------------------------- |
+| SQUID_IMAGE         | tetsuyainfra/caching-by-squid:latest | docker image name with tag                                             |
+| TZ                  | UTC                                  | TIME_ZONE                                                              |
+| RESTART             | no                                   | https://github.com/compose-spec/compose-spec/blob/main/spec.md#restart |
+| CACHE_DIR           | ufs /var/cache/squid 1000 16 256     | https://www.squid-cache.org/Doc/config/cache_dir/                      |
+| MAXIMUM_OBJECT_SIZE | 256 MB                               | https://www.squid-cache.org/Doc/config/maximum_object_size/            |
+| CACHE_MEM           | 256 MB                               | https://www.squid-cache.org/Doc/config/cache_mem/                      |
+| MAX_FILEDESCRIPTORS | 1024                                 | https://www.squid-cache.org/Doc/config/max_filedescriptors/            |
 
 ### A. On localhost variable
 | VAR | default | memo |

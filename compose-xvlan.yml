@@ -28,7 +28,7 @@ services:
         - "3128"
         - mgr:info
       timeout: 10s
-    image: ${SQUID_IMAGE:-tetsuyainfra/compose-squid:latest}
+    image: ${SQUID_IMAGE:-tetsuyainfra/caching-by-squid:latest}
     networks:
       svc_net:
         ipv4_address: ${SQUID_IP_ADDRESS}

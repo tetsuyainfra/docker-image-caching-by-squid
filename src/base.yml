@@ -2,7 +2,7 @@
 
 services:
   squid:
-    image: ${SQUID_IMAGE:-tetsuyainfra/compose-squid:latest}
+    image: ${SQUID_IMAGE:-tetsuyainfra/caching-by-squid:latest}
     restart: ${RESTART:-unless-stopped}
     healthcheck:
       disable: true
