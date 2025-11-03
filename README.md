@@ -2,7 +2,7 @@
 <!-- [![Docker](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml) -->
 <!-- [![Docker Image Version](https://img.shields.io/docker/v/tetsuyainfra/caching-by-squid)](https://hub.docker.com/r/tetsuyainfra/caching-by-squid) -->
 
-## HOW TO MERGE for each compose file
+## HOW TO BUILD and MERGE for each compose file
 ```
 make
 ```
@@ -12,21 +12,25 @@ make
 ```
 # use default bridge
 $ docker compose up
+
 # Same meaning as the following command
 $ docker compose -f compose.yml up
 ```
 
 ### B. On ipvlan network
 ```
-# use other network by ipvlan driverA
+# use other network by ipvlan driver
 $ docker network create --driver ipvlan -o parent=eth1 --gateway 192.168.100.1 --subnet 192.168.100.0/24 user_defined_net
+
+# use other network by macvlan driver
+$ docker network create --driver macvlan -o parent=eth1 --gateway 192.168.100.1 --subnet 192.168.100.0/24 user_defined_net
 
 $ vi .env
 EXTERNAL_NETWORK_NAME=user_defined_net
 SQUID_IP_ADDRESS=192.168.100.2
 REGISTRY_IP_ADDRESS=192.168.100.3
 
-$ docker compose -f compose-ipvlan.yml up 
+$ docker compose -f compose-xvlan.yml up 
 ```
 
 ## How to test
@@ -54,7 +58,7 @@ export $(cat .env | xargs) && ./test.sh
 | --- | ------- | ---- |
 | -   | -       | -    |
 
-### B. On ipvlan network
+### B. On ipvlan|macvlan network
 | VAR                   | default | memo                     |
 | --------------------- | ------- | ------------------------ |
 | EXTERNAL_NETWORK_NAME |         | ex: user defined_network |
@@ -79,5 +83,9 @@ export $(cat .env | xargs) && ./test.sh
 | EXTERNAL_NETWORK_NAME |         | ex: user defined_network |
 | REGISTRY_IP_ADDRESS   |         | ex: 192.168.100.3        |
 
+# Related Project 
+- [tetsuyainfra/docker-image-squid](https://github.com/tetsuyainfra/docker-image-squid)
+- [docker-hub:tetsuyainfra/squid](https://hub.docker.com/r/tetsuyainfra/squid)
+
 # NOTICE
-- Dockerfile, entrypoint.sh from [ubuntu/squid](https://code.launchpad.net/~ubuntu-docker-images/ubuntu-docker-images/+git/squid)
+- entrypoint.sh from [ubuntu/squid](https://code.launchpad.net/~ubuntu-docker-images/ubuntu-docker-images/+git/squid)

@@ -1,0 +1,27 @@
+
+services:
+  squid:
+    networks:
+      svc_net:
+        ipv4_address: "${SQUID_IP_ADDRESS}"
+  # registry:
+  #   networks:
+  #     svc_net:
+  #       ipv4_address: "${REGISTRY_IP_ADDRESS}"
+
+networks:
+  svc_net:
+    name: "${EXTERNAL_NETWORK_NAME}"
+    external: true
+  #   driver: ipvlan
+  #   driver_opts:
+  #     parent: eth1
+  #   ipam:
+  #     config:
+  #       - subnet: 192.168.100.0/24
+  #         gateway: 192.168.100.1
+
+# create the network with the following command:
+# docker network create --driver ipvlan -o parent=eth1 --gateway 192.168.100.1 --subnet 192.168.100.0/24 user_defined_net
+
+

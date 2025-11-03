@@ -1,0 +1,38 @@
+
+
+services:
+  squid:
+    image: ${SQUID_IMAGE:-tetsuyainfra/compose-squid:latest}
+    restart: ${RESTART:-unless-stopped}
+    healthcheck:
+      disable: true
+      test: ["CMD-SHELL", "squidclient", "-h", "localhost", "-p", "3128", "mgr:info"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    environment:
+      DEBUG: ${DEBUG}
+      TZ: ${TZ:-UTC}
+      CACHE_DIR: ${CACHE_DIR:-ufs /var/cache/squid 10000 16 256}
+      MAXIMUM_OBJECT_SIZE: ${MAXIMUM_OBJECT_SIZE:-512 MB}
+      CACHE_MEM: ${CACHE_MEM:-256 MB}
+      CONTAINER_DEBUG: ${CONTAINER_DEBUG}
+      SQUID_HTTPS_USERS: ${SQUID_HTTPS_USERS}
+    volumes:
+      - squid_spool:/var/spool/squid
+      - squid_cache:/var/cache/squid
+
+  # registry:
+  #   image: registry:2
+  #   restart: ${RESTART:-unless-stopped}
+  #   volumes:
+  #     - registry_data:/var/lib/registry
+  #   environment:
+  #     REGISTRY_PROXY_REMOTEURL: "${REGISTRY_PROXY_REMOTEURL:-https://registry-1.docker.io}"
+  #     REGISTRY_PROXY_USERNAME: ${REGISTRY_PROXY_USERNAME}
+  #     REGISTRY_PROXY_PASSWORD: ${REGISTRY_PROXY_PASSWORD}
+
+volumes:
+  squid_spool:
+  squid_cache:
+  registry_data:
