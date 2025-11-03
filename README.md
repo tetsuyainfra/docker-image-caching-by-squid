@@ -1,6 +1,6 @@
 # tetsuyainfra/caching-by-squid
-<!-- [![Docker](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml) -->
-<!-- [![Docker Image Version](https://img.shields.io/docker/v/tetsuyainfra/caching-by-squid)](https://hub.docker.com/r/tetsuyainfra/caching-by-squid) -->
+[![Docker](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/tetsuyainfra/docker-image-caching-by-squid/actions/workflows/docker-publish.yml)
+[![Docker Image Version](https://img.shields.io/docker/v/tetsuyainfra/caching-by-squid)](https://hub.docker.com/r/tetsuyainfra/caching-by-squid)
 
 ## HOW TO BUILD and MERGE for each compose file
 ```
