@@ -31,7 +31,7 @@ clean:
 cache_clean: clean
 	docker buildx prune -f || true
 
-build: $(BUILD_STAMP) compose.yml compose-ipvlan.yml
+build: $(BUILD_STAMP) compose.yml compose-xvlan.yml
 
 $(BUILD_STAMP): $(SQUID_FILES)
 	@echo "Building the Docker image on localhost..."
@@ -51,7 +51,7 @@ run: build
 		$(DOCKER_IMAGE_NAME):latest
 
 
-compose_run: build compose.yml compose-ipvlan.yml
+compose_run: build compose.yml compose-xvlan.yml
 	@echo "Running the Docker container..."
 	docker compose -f compose.yml up
 
@@ -61,7 +61,7 @@ compose.yml: $(SRC_YML)
 
 compose-xvlan.yml: $(SRC_YML)
 	@echo "$(COMOPSE_HEADER)" > $@
-	docker compose -f src/base.yml -f src/network-ipvlan.yml config $(COMPOSE_OPTIONS) >> $@
+	docker compose -f src/base.yml -f src/network-xvlan.yml config $(COMPOSE_OPTIONS) >> $@
 
 
 test: build
