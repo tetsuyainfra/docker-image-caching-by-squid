@@ -70,7 +70,7 @@ test: build
 	docker run --rm -it -d\
 		-p 3128:3128 \
 		-p 3142:3142 \
-		--env SQUID_HTTPS_USERS="user1@password1" \
+		--env SQUID_HTTPS_USERS="user1@password1 advplyr@password2" \
 		--name $(CONTAINER_NAME) \
 		$(DOCKER_IMAGE_NAME):latest
 	sleep 5

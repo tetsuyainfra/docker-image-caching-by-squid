@@ -70,6 +70,14 @@ check_url $code https://github.com
 check_url $code https://raw.githubusercontent.com/tetsuyainfra/docker-image-caching-by-squid/refs/heads/main/README.md
 }
 
+################################################################################
+# Restricted sites(only advplyr user)
+# adplyr.github.io
+function check_restrected_adplyr() {
+code=$1
+check_url $code https://advplyr.github.io/audiobookshelf-ppa/./InRelease
+}
+
 
 ################################################################################
 echo "-------------------- Without  Authentication to proxy --------------------"
@@ -83,7 +91,7 @@ check_restrected 000
 
 
 ################################################################################
-echo "-------------------- With Basic Authentication to proxy --------------------"
+echo "-------------------- With Basic Authentication(user1) to proxy -------------------"
 http_proxy=http://user1:password1@localhost:3128/
 https_proxy=http://user1:password1@localhost:3128/
 export http_proxy https_proxy
@@ -91,5 +99,17 @@ export http_proxy https_proxy
 check_deny
 check_accept
 check_restrected 200
+check_restrected_adplyr 000
+
+################################################################################
+echo "-------------------- With Basic Authentication(advplyr) to proxy -------------------"
+http_proxy=http://advplyr:password2@localhost:3128/
+https_proxy=http://advplyr:password2@localhost:3128/
+export http_proxy https_proxy
+
+check_deny
+check_accept
+check_restrected 200
+check_restrected_adplyr 200
 
 echo "All tests passed."
