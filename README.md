@@ -64,25 +64,6 @@ export $(cat .env | xargs) && ./test.sh
 | EXTERNAL_NETWORK_NAME |         | ex: user defined_network |
 | SQUID_IP_ADDRESS      |         | ex: 192.168.100.2        |
 
-
-## docker-registry mirror envrionment
-| VAR                      | default                      | memo     |
-| ------------------------ | ---------------------------- | -------- |
-| REGISTRY_PROXY_REMOTEURL | https://registry-1.docker.io |          |
-| REGISTRY_PROXY_USERNAME  |                              | required |
-| REGISTRY_PROXY_PASSWORD  |                              | required |
-
-### A. On localhost variable
-| VAR | default | memo |
-| --- | ------- | ---- |
-| -   | -       | -    |
-
-### B. On ipvlan network
-| VAR                   | default | memo                     |
-| --------------------- | ------- | ------------------------ |
-| EXTERNAL_NETWORK_NAME |         | ex: user defined_network |
-| REGISTRY_IP_ADDRESS   |         | ex: 192.168.100.3        |
-
 # Related Project 
 - [tetsuyainfra/docker-image-squid](https://github.com/tetsuyainfra/docker-image-squid)
 - [docker-hub:tetsuyainfra/squid](https://hub.docker.com/r/tetsuyainfra/squid)
