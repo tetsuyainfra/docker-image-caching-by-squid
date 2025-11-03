@@ -43,6 +43,5 @@ services:
         type: volume
         volume: {}
 volumes:
-  registry_data: null
   squid_cache: null
   squid_spool: null

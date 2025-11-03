@@ -35,4 +35,3 @@ services:
 volumes:
   squid_spool:
   squid_cache:
-  registry_data:
