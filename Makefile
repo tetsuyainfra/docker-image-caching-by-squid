@@ -74,6 +74,10 @@ test: build
 		--name $(CONTAINER_NAME) \
 		$(DOCKER_IMAGE_NAME):latest
 	sleep 5
-	bash test.sh
+	bash test.sh || { \
+		echo "Tests failed." ; \
+		docker stop $(CONTAINER_NAME) ; \
+		exit 1; \
+	};
 	docker stop $(CONTAINER_NAME)
 
