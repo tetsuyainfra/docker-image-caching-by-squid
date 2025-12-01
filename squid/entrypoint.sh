@@ -57,10 +57,14 @@ done
 chown proxy:proxy /var/cache/squid
 chown proxy:proxy /var/log/squid
 
-# tail -F /var/log/squid/access.log 2>/dev/null &
-# tail -F /var/log/squid/error.log 2>/dev/null &
-# tail -F /var/log/squid/store.log 2>/dev/null &
-# tail -F /var/log/squid/cache.log 2>/dev/null &
+touch /tmp/tmp.log
+chown proxy:proxy /tmp/tmp.log
+tail -F /tmp/tmp.log 2>/dev/null &
+
+tail -F /var/log/squid/access.log 2>/dev/null &
+tail -F /var/log/squid/error.log 2>/dev/null &
+tail -F /var/log/squid/store.log 2>/dev/null &
+tail -F /var/log/squid/cache.log 2>/dev/null &
 # create missing cache directories and exit
 /usr/sbin/squid -Nz
 
